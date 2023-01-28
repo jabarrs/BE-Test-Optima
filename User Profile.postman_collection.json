@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "27fc9360-9627-443a-9ee6-e207ea1e1884",
+		"name": "User Profile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23392658"
+	},
+	"item": [
+		{
+			"name": "All Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJicmFtIiwiZW1haWwiOiJicmFtQGdtYWlsLmNvbSIsImlhdCI6MTY3NDkyMzQ3OCwiZXhwIjoxNjc0OTI3MDc4fQ.JFBZXOGvloooNuir_MrkbRwOnRkFOYjRC1nfQntfHas",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/profile?page=1&limit=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"profile"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJqYWJhciIsImVtYWlsIjoiamFiYXJAZ21haWwuY29tIiwiaWF0IjoxNjc0OTI0NTUzLCJleHAiOjE2NzQ5MjgxNTN9.Rv6KRxZ8jrEpCOnlPK9nzq652f3VhzkB-vVI7_I3AfY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nik",
+							"value": "1234567891234567",
+							"type": "text"
+						},
+						{
+							"key": "full_name",
+							"value": "Jabar",
+							"type": "text"
+						},
+						{
+							"key": "blood_type",
+							"value": "O",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/MyLaptop/Pictures/j71o6fyry39eaz1eyjna.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"profile"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "5",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJqYWJhciIsImVtYWlsIjoiamFiYXJAZ21haWwuY29tIiwiaWF0IjoxNjc0OTI0NTUzLCJleHAiOjE2NzQ5MjgxNTN9.Rv6KRxZ8jrEpCOnlPK9nzq652f3VhzkB-vVI7_I3AfY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nik",
+							"value": "1234567891234567",
+							"type": "text"
+						},
+						{
+							"key": "full_name",
+							"value": "Jabar",
+							"type": "text"
+						},
+						{
+							"key": "blood_type",
+							"value": "O",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/MyLaptop/Pictures/apotek.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/profile/30",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"profile",
+						"30"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "5",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Profile",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://kind-ruby-coypu-hem.cyclic.app/profile",
+					"protocol": "https",
+					"host": [
+						"kind-ruby-coypu-hem",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
