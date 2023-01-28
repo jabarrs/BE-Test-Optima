@@ -17,10 +17,8 @@ export const getProfiles = async (req, res) => {
       sortBY,
       sort,
     });
-    const {
-      rows: [count],
-    } = await Profile.findAndCountAll();
-    const totalData = parseInt(count.count);
+    const { count } = await Profile.findAndCountAll();
+    const totalData = parseInt(count);
     const totalPage = Math.ceil(totalData / limit);
 
     response.currentPage = page;
