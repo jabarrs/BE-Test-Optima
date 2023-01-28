@@ -3,9 +3,9 @@ import { getProfiles, getProfileById, saveProfile, updateProfile, deleteProfile 
 import { VerifyToken } from '../middleware/VerifyToken.js';
 const router = express.Router();
 
-router.get('/profile', VerifyToken, getProfiles);
+router.get('/profile', getProfiles);
 router.get('/profile/:id', getProfileById);
-router.post('/profile', VerifyToken, saveProfile);
+router.post('/profile', saveProfile);
 router.patch('/profile/:id', updateProfile);
 router.delete('/profile/:id', deleteProfile);
 

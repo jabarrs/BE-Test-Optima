@@ -1,6 +1,7 @@
 import Profile from '../models/UserProfile.js';
 import path from 'path';
 import fs from 'fs';
+import { log } from 'console';
 
 export const getProfiles = async (req, res) => {
   try {
@@ -48,16 +49,19 @@ export const getProfileById = async (req, res) => {
 };
 export const saveProfile = (req, res) => {
   if (req.files === null) return res.status(400).json({ message: 'No File Uploaded' });
-  const userId = req.body.userId;
+  const host = process.env.BASE_URL;
+  const userId = req.userId;
   const nik = req.body.nik;
   const gender = req.body.gender;
   const blood_type = req.body.blood_type;
   const full_name = req.body.full_name;
-  const file = req.files.file;
-  const fileSize = file.data.length;
-  const ext = path.extname(file.name);
-  const fileName = file.md5 + ext;
-  const url = `${req.protocol}://${req.get('host')}/Images/${fileName}`;
+  const photo = req.files.photo;
+  const fileSize = photo.data.length;
+  const ext = path.extname(photo.name);
+  const fileNamePrime = photo.md5 + ext;
+  const fileName = fileNamePrime.substr(0, fileNamePrime.lastIndexOf('.')) + '.webp';
+  const url = `${host}/Images/${fileName}`;
+  console.log(url);
   const allowedType = ['.png', '.jpg', '.jpeg'];
 
   if (nik.length > 16 || nik.length < 16) return res.status(422).json({ message: 'NIK must be 16 digits' });
@@ -67,7 +71,7 @@ export const saveProfile = (req, res) => {
   if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ message: 'Invalid Images' });
   if (fileSize > 2000000) return res.status(422).json({ message: 'Image must be less than 2 MB' });
 
-  file.mv(`./public/images/${fileName}`, async (err) => {
+  photo.mv(`./public/images/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ message: err.message });
     try {
       await Profile.create({ userId: userId, nik: nik, gender: gender, blood_type: blood_type, full_name: full_name, photo: fileName, url: url });
