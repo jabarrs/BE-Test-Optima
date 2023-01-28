@@ -20,13 +20,9 @@ export const getProfiles = async (req, res) => {
     const { count } = await Profile.findAndCountAll();
     const totalData = parseInt(count);
     const totalPage = Math.ceil(totalData / limit);
-
     response.currentPage = page;
     response.limit = limit;
-    response.totalData = totalData;
-    response.totalPage = totalPage;
-
-    res.json(response);
+    (response.totalData = totalData), (response.totalPage = totalPage), res.json(response);
   } catch (error) {
     console.log(error.message);
   }
@@ -45,19 +41,17 @@ export const getProfileById = async (req, res) => {
 };
 export const saveProfile = (req, res) => {
   if (req.files === null) return res.status(400).json({ message: 'No File Uploaded' });
-  const host = process.env.BASE_URL;
   const userId = req.userId;
   const nik = req.body.nik;
   const gender = req.body.gender;
   const blood_type = req.body.blood_type;
   const full_name = req.body.full_name;
-  const photo = req.files.photo;
-  const fileSize = photo.data.length;
-  const ext = path.extname(photo.name);
-  const fileNamePrime = photo.md5 + ext;
+  const file = req.files.file;
+  const fileSize = file.data.length;
+  const ext = path.extname(file.name);
+  const fileNamePrime = file.md5 + ext;
   const fileName = fileNamePrime.substr(0, fileNamePrime.lastIndexOf('.')) + '.webp';
-  const url = `${host}/Images/${fileName}`;
-  console.log(url);
+  const url = `${req.protocol}://${req.get('host')}/Images/${fileName}`;
   const allowedType = ['.png', '.jpg', '.jpeg'];
 
   if (nik.length > 16 || nik.length < 16) return res.status(422).json({ message: 'NIK must be 16 digits' });
@@ -67,7 +61,7 @@ export const saveProfile = (req, res) => {
   if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ message: 'Invalid Images' });
   if (fileSize > 2000000) return res.status(422).json({ message: 'Image must be less than 2 MB' });
 
-  photo.mv(`./public/images/${fileName}`, async (err) => {
+  file.mv(`./public/images/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ message: err.message });
     try {
       await Profile.create({ userId: userId, nik: nik, gender: gender, blood_type: blood_type, full_name: full_name, photo: fileName, url: url });
@@ -91,7 +85,8 @@ export const updateProfile = async (req, res) => {
     const file = req.files.file;
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
-    fileName = file.md5 + ext;
+    const fileNamePrime = file.md5 + ext;
+    fileName = fileNamePrime.substr(0, fileNamePrime.lastIndexOf('.')) + '.webp';
     const allowedType = ['.png', '.jpg', '.jpeg'];
 
     if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ message: 'Invalid Images' });
@@ -104,7 +99,7 @@ export const updateProfile = async (req, res) => {
       if (err) return res.status(500).json({ message: err.message });
     });
   }
-  const userId = req.body.userId;
+  const userId = req.userId;
   const nik = req.body.nik;
   const gender = req.body.gender;
   const blood_type = req.body.blood_type;
