@@ -1,7 +1,6 @@
 import Profile from '../models/UserProfile.js';
 import path from 'path';
 import fs from 'fs';
-import { log } from 'console';
 
 export const getProfiles = async (req, res) => {
   try {
@@ -23,13 +22,12 @@ export const getProfiles = async (req, res) => {
     } = await Profile.findAndCountAll();
     const totalData = parseInt(count.count);
     const totalPage = Math.ceil(totalData / limit);
-    const pagination = {
-      currentPage: page,
-      limit: limit,
-      totalData: totalData,
-      totalPage: totalPage,
-    };
-    pagination;
+
+    response.currentPage = page;
+    response.limit = limit;
+    response.totalData = totalData;
+    response.totalPage = totalPage;
+
     res.json(response);
   } catch (error) {
     console.log(error.message);
