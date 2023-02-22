@@ -1,116 +1,96 @@
 {
-	"info": {
-		"_postman_id": "fb4149ba-1c9d-44a3-8289-9c57e131f16e",
-		"name": "Login and Register",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23392658"
-	},
-	"item": [
-		{
-			"name": "all user",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJqYWJhciIsImVtYWlsIjoiamFiYXJAZ21haWwuY29tIiwiaWF0IjoxNjc0ODMyOTI1LCJleHAiOjE2NzQ4MzI5ODV9.eEioSuhuItmuaQy1scFQXBNx-s_VvRcUj54UpF_s8eI",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://kind-ruby-coypu-hem.cyclic.app/users",
-					"protocol": "https",
-					"host": [
-						"kind-ruby-coypu-hem",
-						"cyclic",
-						"app"
-					],
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "User Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"bram\",\r\n    \"email\":\"bram@gmail.com\",\r\n    \"password\": \"12345\",\r\n    \"confPassword\": \"12345\"      \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "User Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"jabar@gmail.com\",\r\n    \"password\": \"12345\"   \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete atau LogOut",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://kind-ruby-coypu-hem.cyclic.app/logout",
-					"protocol": "https",
-					"host": [
-						"kind-ruby-coypu-hem",
-						"cyclic",
-						"app"
-					],
-					"path": [
-						"logout"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "fb4149ba-1c9d-44a3-8289-9c57e131f16e",
+    "name": "Login and Register",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "23392658"
+  },
+  "item": [
+    {
+      "name": "all user",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJqYWJhciIsImVtYWlsIjoiamFiYXJAZ21haWwuY29tIiwiaWF0IjoxNjc0ODMyOTI1LCJleHAiOjE2NzQ4MzI5ODV9.eEioSuhuItmuaQy1scFQXBNx-s_VvRcUj54UpF_s8eI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:5000/users",
+          "protocol": "https",
+          "host": ["kind-ruby-coypu-hem", "cyclic", "app"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"bram\",\r\n    \"email\":\"bram@gmail.com\",\r\n    \"password\": \"12345\",\r\n    \"confPassword\": \"12345\"      \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\":\"jabar@gmail.com\",\r\n    \"password\": \"12345\"   \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete atau LogOut",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://kind-ruby-coypu-hem.cyclic.app/logout",
+          "protocol": "https",
+          "host": ["kind-ruby-coypu-hem", "cyclic", "app"],
+          "path": ["logout"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
